@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".monitorActivities.DeportistaActivity">
+
+    <ImageView
+        android:id="@+id/logo"
+        android:layout_width="165dp"
+        android:layout_height="165dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="20dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/latidos" />
+
+    <TextView
+        android:id="@+id/deportName"
+        android:layout_width="146dp"
+        android:layout_height="50dp"
+        android:gravity="center_horizontal|center_vertical"
+        android:text="TextView"
+        android:textSize="30sp"
+        app:layout_constraintBottom_toBottomOf="@+id/logo"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.425"
+        app:layout_constraintStart_toEndOf="@+id/logo"
+        app:layout_constraintTop_toTopOf="@+id/logo" />
+
+    <TextView
+        android:id="@+id/stats"
+        android:layout_width="270dp"
+        android:layout_height="52dp"
+        android:gravity="center_horizontal|center_vertical"
+        android:text="Estadísticas"
+        android:textSize="40sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/logo" />
+
+    <Button
+        android:id="@+id/rutaBici"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:onClick="launchMapBiking"
+        android:text="Ultima bici"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/carrera"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <Button
+        android:id="@+id/carrera"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:onClick="launchMapRunning"
+        android:text="Ultima Carrera"
+        app:layout_constraintBottom_toBottomOf="@+id/rutaBici"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/rutaBici"
+        app:layout_constraintTop_toTopOf="@+id/rutaBici" />
+
+    <LinearLayout
+        android:layout_width="410dp"
+        android:layout_height="383dp"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toTopOf="@+id/rutaBici"
+        app:layout_constraintTop_toBottomOf="@+id/stats"
+        app:layout_constraintVertical_bias="0.7"
+        tools:layout_editor_absoluteX="1dp">
+
+        <ListView
+            android:id="@+id/listaStats"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+    </LinearLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

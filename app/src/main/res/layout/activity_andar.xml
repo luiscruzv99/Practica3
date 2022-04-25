@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".deportistaActivities.AndarActivity">
+
+    <Chronometer
+        android:id="@+id/chronoAndar"
+        android:layout_width="92dp"
+        android:layout_height="45dp"
+        android:gravity="center_horizontal|center_vertical"
+        android:textSize="24sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.699" />
+
+    <Button
+        android:id="@+id/empiezaAndar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:onClick="empieza"
+        android:text="Empezar"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/chronoAndar"
+        app:layout_constraintStart_toStartOf="@+id/chronoAndar"
+        app:layout_constraintTop_toBottomOf="@+id/chronoAndar"
+        app:layout_constraintVertical_bias="0.498" />
+
+    <TextView
+        android:id="@+id/aAndar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Empieza a andar!"
+        android:textSize="34sp"
+        app:layout_constraintBottom_toTopOf="@+id/chronoAndar"
+        app:layout_constraintEnd_toEndOf="@+id/chronoAndar"
+        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintStart_toStartOf="@+id/chronoAndar"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.239" />
+
+    <TextView
+        android:id="@+id/pasos"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="34sp"
+        app:layout_constraintBottom_toTopOf="@+id/chronoAndar"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/aAndar"
+        app:layout_constraintVertical_bias="0.956" />
+
+    <ImageView
+        android:id="@+id/imageView4"
+        android:layout_width="245dp"
+        android:layout_height="221dp"
+        app:layout_constraintBottom_toTopOf="@+id/pasos"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/aAndar"
+        app:layout_constraintVertical_bias="0.442"
+        app:srcCompat="@drawable/walking" />
+</androidx.constraintlayout.widget.ConstraintLayout>

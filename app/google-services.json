@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "614644774676",
+    "project_id": "sistemasinteractivos-344213",
+    "storage_bucket": "sistemasinteractivos-344213.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:614644774676:android:9803e537108674e3f57401",
+        "android_client_info": {
+          "package_name": "com.luis"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "614644774676-b61ghp37ot9ncibsr7qse3s209kv3n5v.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBaZXihns6C9yrQnJrTI423h0XDW5VEKvA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "614644774676-b61ghp37ot9ncibsr7qse3s209kv3n5v.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".deportistaActivities.BiciActivity">
+
+    <Chronometer
+        android:id="@+id/chronoBici"
+        android:layout_width="92dp"
+        android:layout_height="45dp"
+        android:gravity="center_horizontal|center_vertical"
+        android:textSize="24sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.699" />
+
+    <Button
+        android:id="@+id/empiezaBici"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:onClick="empieza"
+        android:text="Empezar"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/chronoBici"
+        app:layout_constraintStart_toStartOf="@+id/chronoBici"
+        app:layout_constraintTop_toBottomOf="@+id/chronoBici"
+        app:layout_constraintVertical_bias="0.498" />
+
+    <TextView
+        android:id="@+id/aBici"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Empieza a pedalear!"
+        android:textSize="34sp"
+        app:layout_constraintBottom_toTopOf="@+id/chronoBici"
+        app:layout_constraintEnd_toEndOf="@+id/chronoBici"
+        app:layout_constraintStart_toStartOf="@+id/chronoBici"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.251" />
+
+    <TextView
+        android:id="@+id/velocidad"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="34sp"
+        app:layout_constraintBottom_toTopOf="@+id/chronoBici"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/aBici"
+        app:layout_constraintVertical_bias="0.948" />
+
+    <ImageView
+        android:id="@+id/imageView3"
+        android:layout_width="169dp"
+        android:layout_height="164dp"
+        app:layout_constraintBottom_toTopOf="@+id/velocidad"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/aBici"
+        app:srcCompat="@drawable/biking" />
+</androidx.constraintlayout.widget.ConstraintLayout>

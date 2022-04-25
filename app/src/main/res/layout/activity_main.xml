@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity">
+
+    <TextView
+        android:id="@+id/bannerLogin"
+        android:layout_width="95dp"
+        android:layout_height="48dp"
+        android:layout_marginTop="32dp"
+        android:gravity="center"
+        android:text="Login"
+        android:textSize="34sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <EditText
+        android:id="@+id/campoUsuario"
+        android:layout_width="210dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginRight="16dp"
+        android:layout_marginBottom="8dp"
+        android:ems="10"
+        android:hint="User Name"
+        android:inputType="textPersonName"
+        app:layout_constraintBottom_toTopOf="@+id/campoPassword"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageView5" />
+
+    <EditText
+        android:id="@+id/campoPassword"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:ems="10"
+        android:hint="Password"
+        android:inputType="textPersonName"
+        android:password="true"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/campoUsuario" />
+
+    <Button
+        android:id="@+id/btnOk"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="128dp"
+        android:onClick="login"
+        android:text="Iniciar sesion"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/campoPassword" />
+
+    <Button
+        android:id="@+id/bntCancel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:onClick="finish"
+        android:text="Salir"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/crearUsuario"
+        app:layout_constraintStart_toStartOf="@+id/crearUsuario"
+        app:layout_constraintTop_toBottomOf="@+id/crearUsuario"
+        app:layout_constraintVertical_bias="1.0" />
+
+    <ImageView
+        android:id="@+id/imageView5"
+        android:layout_width="165dp"
+        android:layout_height="185dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/bannerLogin"
+        app:srcCompat="@drawable/latidos" />
+
+    <RadioGroup
+        android:id="@+id/tipoUsuario"
+        android:layout_width="153dp"
+        android:layout_height="102dp"
+        android:checkedButton="@id/deportista"
+        app:layout_constraintBottom_toTopOf="@+id/btnOk"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/campoPassword">
+
+        <RadioButton
+            android:id="@+id/deportista"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:checked="false"
+            android:text="Deportista" />
+
+        <RadioButton
+            android:id="@+id/monitor"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Monitor" />
+    </RadioGroup>
+
+    <Button
+        android:id="@+id/crearUsuario"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:onClick="signIn"
+        android:text="Crear Usuario"
+        app:layout_constraintBottom_toTopOf="@+id/bntCancel"
+        app:layout_constraintEnd_toEndOf="@+id/btnOk"
+        app:layout_constraintStart_toStartOf="@+id/btnOk"
+        app:layout_constraintTop_toBottomOf="@+id/btnOk" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

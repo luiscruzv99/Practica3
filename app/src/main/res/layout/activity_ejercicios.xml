@@ -1,0 +1,289 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".deportistaActivities.EjerciciosActivity">
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="273dp"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="TextView"
+        android:textSize="24sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.04000002" />
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cardEjer"
+        android:layout_width="411dp"
+        android:layout_height="387dp"
+        android:layout_margin="10dp"
+        android:layout_marginTop="12dp"
+        app:cardBackgroundColor="@color/white"
+        app:cardCornerRadius="20dp"
+        app:cardElevation="10dp"
+        app:cardMaxElevation="12dp"
+        app:cardPreventCornerOverlap="true"
+        app:cardUseCompatPadding="true"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom|center_horizontal"
+            android:text="@string/ejercicios"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="@+id/cardEjer"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/cardBici" />
+    </androidx.cardview.widget.CardView>
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cardAndar"
+        android:layout_width="119dp"
+        android:layout_height="138dp"
+        android:layout_margin="10dp"
+        android:layout_marginEnd="7dp"
+        android:onClick="andar"
+        app:cardBackgroundColor="@color/purple_200"
+        app:cardCornerRadius="20dp"
+        app:cardElevation="10dp"
+        app:cardMaxElevation="12dp"
+        app:cardPreventCornerOverlap="true"
+        app:cardUseCompatPadding="true"
+        app:layout_constraintBottom_toBottomOf="@+id/cardCorrer"
+        app:layout_constraintEnd_toStartOf="@+id/cardCorrer"
+        app:layout_constraintStart_toStartOf="@+id/cardEjer"
+        app:layout_constraintTop_toTopOf="@+id/cardCorrer">
+
+        <ImageView
+            android:id="@+id/andarImg"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:layout_gravity="center_horizontal"
+            android:layout_margin="10dp"
+            android:contentDescription="@string/andar"
+            android:src="@drawable/walking" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom|center_horizontal"
+            android:layout_marginTop="20dp"
+            android:layout_marginBottom="20dp"
+            android:text="@string/andar"
+            android:textColor="@color/black"
+            android:textSize="16sp"
+            android:textStyle="bold" />
+
+    </androidx.cardview.widget.CardView>
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cardCorrer"
+        android:layout_width="119dp"
+        android:layout_height="140dp"
+        android:layout_margin="10dp"
+        android:layout_marginEnd="10dp"
+        android:onClick="correr"
+        app:cardBackgroundColor="@color/purple_200"
+        app:cardCornerRadius="20dp"
+        app:cardElevation="10dp"
+        app:cardMaxElevation="12dp"
+        app:cardPreventCornerOverlap="true"
+        app:cardUseCompatPadding="true"
+        app:layout_constraintBottom_toTopOf="@+id/cardBici"
+        app:layout_constraintEnd_toStartOf="@+id/cardFlex"
+        app:layout_constraintStart_toEndOf="@+id/cardAndar"
+        app:layout_constraintTop_toTopOf="@+id/cardEjer">
+
+        <ImageView
+            android:id="@+id/correrImg"
+            android:layout_width="62dp"
+            android:layout_height="47dp"
+            android:layout_gravity="center_horizontal"
+            android:layout_margin="10dp"
+            android:contentDescription="@string/correr"
+            android:src="@drawable/running" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom|center_horizontal"
+            android:layout_marginTop="20dp"
+            android:layout_marginBottom="20dp"
+            android:text="@string/correr"
+            android:textColor="@color/black"
+            android:textSize="16sp"
+            android:textStyle="bold" />
+
+    </androidx.cardview.widget.CardView>
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cardBici"
+        android:layout_width="119dp"
+        android:layout_height="140dp"
+        android:layout_margin="10dp"
+        android:onClick="bici"
+        app:cardBackgroundColor="@color/purple_200"
+        app:cardCornerRadius="20dp"
+        app:cardElevation="10dp"
+        app:cardMaxElevation="12dp"
+        app:cardPreventCornerOverlap="true"
+        app:cardUseCompatPadding="true"
+        app:layout_constraintBottom_toBottomOf="@+id/cardEjer"
+        app:layout_constraintEnd_toEndOf="@+id/cardCorrer"
+        app:layout_constraintStart_toStartOf="@+id/cardCorrer"
+        app:layout_constraintTop_toBottomOf="@+id/cardCorrer"
+        app:layout_constraintVertical_bias="0.0">
+
+        <ImageView
+            android:id="@+id/biciImg"
+            android:layout_width="62dp"
+            android:layout_height="44dp"
+            android:layout_gravity="center_horizontal"
+            android:layout_margin="10dp"
+            android:contentDescription="@string/bici"
+            android:src="@drawable/biking" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom|center_horizontal"
+            android:layout_marginTop="20dp"
+            android:layout_marginBottom="20dp"
+            android:text="@string/bici"
+            android:textColor="@color/black"
+            android:textSize="16sp"
+            android:textStyle="bold" />
+
+    </androidx.cardview.widget.CardView>
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cardFlex"
+        android:layout_width="119dp"
+        android:layout_height="140dp"
+        android:layout_margin="10dp"
+        android:onClick="flexiones"
+        app:cardBackgroundColor="@color/purple_200"
+        app:cardCornerRadius="20dp"
+        app:cardElevation="10dp"
+        app:cardMaxElevation="12dp"
+        app:cardPreventCornerOverlap="true"
+        app:cardUseCompatPadding="true"
+        app:layout_constraintBottom_toBottomOf="@+id/cardCorrer"
+        app:layout_constraintStart_toEndOf="@+id/cardCorrer"
+        app:layout_constraintTop_toTopOf="@+id/cardCorrer">
+
+        <ImageView
+            android:id="@+id/flexImg"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_gravity="center_horizontal"
+            android:layout_margin="10dp"
+            android:contentDescription="@string/flex"
+            android:src="@drawable/pushups" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom|center_horizontal"
+            android:layout_marginTop="20dp"
+            android:layout_marginBottom="20dp"
+            android:text="@string/flex"
+            android:textColor="@color/black"
+            android:textSize="16sp"
+            android:textStyle="bold" />
+
+    </androidx.cardview.widget.CardView>
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cardEquipos"
+        android:layout_width="182dp"
+        android:layout_height="276dp"
+        android:layout_margin="10dp"
+        android:onClick="equipos"
+        app:cardBackgroundColor="@color/white"
+        app:cardCornerRadius="20dp"
+        app:cardElevation="10dp"
+        app:cardMaxElevation="12dp"
+        app:cardPreventCornerOverlap="true"
+        app:cardUseCompatPadding="true"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/cardMonitor"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/cardEjer">
+
+        <ImageView
+            android:id="@+id/latidos"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_gravity="center_horizontal"
+            android:layout_margin="10dp"
+            android:contentDescription="@string/flex"
+            android:src="@drawable/pushups" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom|center_horizontal"
+            android:layout_marginTop="20dp"
+            android:layout_marginBottom="20dp"
+            android:text="@string/equipos"
+            android:textColor="@color/black"
+            android:textSize="20sp"
+            android:textStyle="bold" />
+
+    </androidx.cardview.widget.CardView>
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cardMonitor"
+        android:layout_width="196dp"
+        android:layout_height="274dp"
+        android:layout_margin="10dp"
+        android:onClick="flexiones"
+        app:cardBackgroundColor="@color/white"
+        app:cardCornerRadius="20dp"
+        app:cardElevation="10dp"
+        app:cardMaxElevation="12dp"
+        app:cardPreventCornerOverlap="true"
+        app:cardUseCompatPadding="true"
+        app:layout_constraintBottom_toBottomOf="@+id/cardEquipos"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/cardEquipos"
+        app:layout_constraintTop_toTopOf="@+id/cardEquipos">
+
+        <ImageView
+            android:id="@+id/iconoEj"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_gravity="center_horizontal"
+            android:layout_margin="10dp"
+            android:contentDescription="@string/flex"
+            android:src="@drawable/pushups" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom|center_horizontal"
+            android:layout_marginTop="20dp"
+            android:layout_marginBottom="20dp"
+            android:text="@string/monitor"
+            android:textColor="@color/black"
+            android:textSize="20sp"
+            android:textStyle="bold" />
+
+    </androidx.cardview.widget.CardView>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

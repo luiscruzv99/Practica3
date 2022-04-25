@@ -1,0 +1,24 @@
+<resources>
+    <string name="app_name">Activate</string>
+    <string name="title_activity_monitor">MonitorActivity</string>
+    <!-- Strings used for fragments for navigation -->
+    <string name="first_fragment_label">First Fragment</string>
+    <string name="second_fragment_label">Second Fragment</string>
+    <string name="next">Next</string>
+    <string name="previous">Previous</string>
+
+    <string name="hello_first_fragment">Hello first fragment</string>
+    <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
+    <string name="title_activity_deportista">DeportistaActivity</string>
+    <string name="title_activity_track_ej">TrackEjActivity</string>
+    <string name="correr">Running</string>
+    <string name="andar">Paseo</string>
+    <string name="bici">Biking</string>
+    <string name="flex">Flexiones</string>
+    <string name="ejercicios">Realizar ejercicio</string>
+    <string name="monitor">Monitor</string>
+    <string name="equipos">Equipos</string>
+    <string name="lista_de_deportistas">Lista de deportistas</string>
+    <string name="tus_equipos">Tus Equipos</string>
+    <string name="agregar_equipo">Agregar equipo</string>
+</resources>
