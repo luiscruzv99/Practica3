@@ -16,7 +16,7 @@ public class Deportista extends Usuario{
     private ArrayList<Flexiones> flexiones;
     private ArrayList<Bici> bicicletas;
     private ArrayList<Carrera> carreras;
-    private ArrayList<Integer> equipos;
+    private ArrayList<String> equipos;
 
     public Deportista(){
         super();
@@ -78,11 +78,11 @@ public class Deportista extends Usuario{
         this.carreras = carreras;
     }
 
-    public ArrayList<Integer> getEquipos() {
+    public ArrayList<String> getEquipos() {
         return equipos;
     }
 
-    public void setEquipos(ArrayList<Integer> equipos) {
+    public void setEquipos(ArrayList<String> equipos) {
         this.equipos = equipos;
     }
 }
