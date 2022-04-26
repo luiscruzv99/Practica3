@@ -5,11 +5,14 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.app.AlertDialog;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.SparseBooleanArray;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.luis.MainActivity;
@@ -17,7 +20,6 @@ import com.luis.R;
 import com.luis.pojos.Equipo;
 import com.luis.pojos.Repository;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -35,11 +37,16 @@ public class EquipoActivity extends AppCompatActivity {
         name = intent.getStringExtra(MainActivity.EXTRA_MESSAGE);
         r = Repository.getInstance(this);
 
+        r.getEquipos();
+
         ListView listaEquipos = (ListView) findViewById(R.id.listaEquipos);
         EquipoArrayAdapter equipoArrayAdapter = new EquipoArrayAdapter(getApplicationContext(), R.layout.equipo_row);
         listaEquipos.setAdapter(equipoArrayAdapter);
 
-        equipoArrayAdapter.addAll(r.getEquipos().values());
+        ArrayList<Equipo> eqs =new ArrayList<>(r.getEquipos().values());
+        for(Equipo e: eqs){
+            equipoArrayAdapter.add(e);
+        }
 
         FloatingActionButton fab = findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
@@ -53,10 +60,10 @@ public class EquipoActivity extends AppCompatActivity {
                 ArrayList<String> compis = r.getMonitor(r.getDeportista(name).getIdMonitor()).getDeportistas();
                 compis.remove(name);
 
-                //TODO: Mostrar elementos en la vista con checkbox
                 ListView a = alertCustomdialog.findViewById(R.id.listaCompis);
-                ArrayAdapter<String> adapter = new ArrayAdapter<String>(alert.getContext(), android.R.layout.simple_list_item_1, compis);
+                ArrayAdapter<String> adapter = new ArrayAdapter<String>(alert.getContext(), android.R.layout.simple_list_item_multiple_choice, compis);
                 a.setAdapter(adapter);
+                a.setChoiceMode(ListView.CHOICE_MODE_MULTIPLE);
                 adapter.notifyDataSetChanged();
 
 
@@ -72,8 +79,34 @@ public class EquipoActivity extends AppCompatActivity {
                 g.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
-                        //TODO: recoger los compis marcados e invocar creaEquipo
-                        System.out.println("Guardado");
+
+                        SparseBooleanArray values = a.getCheckedItemPositions();
+                        ArrayList<String> selected = new ArrayList<>();
+
+                        if(values.size() == 0){
+                            Toast.makeText(alertCustomdialog.getContext(), "Selecciona al menos a un compañero", Toast.LENGTH_LONG).show();
+                            return;
+                        }
+
+                        for(int i=0; i<values.size(); i++){
+                            if(values.valueAt(i)){
+                                selected.add(compis.get(i));
+                                System.out.println(compis.get(i));
+                            }
+                        }
+
+                        TextView input = alertCustomdialog.findViewById(R.id.nombreEquipo);
+                        String nombreEquipo = input.getText().toString();
+                        if(nombreEquipo.isEmpty()){
+                            Toast.makeText(alertCustomdialog.getContext(), "Introduce un nombre de equipo", Toast.LENGTH_LONG).show();
+                            return;
+                        }
+                        System.out.println("Guardado: "+ nombreEquipo);
+
+                        creaEquipo(nombreEquipo, selected, name);
+                        dialog.dismiss();
+                        equipoArrayAdapter.notifyDataSetChanged();
+                        listaEquipos.setAdapter(equipoArrayAdapter);
                     }
                 });
 
@@ -94,11 +127,11 @@ public class EquipoActivity extends AppCompatActivity {
         e.setIntegrantes(integrantes);
         e.getIntegrantes().add(name);
 
-        r.getDeportista(name).getEquipos().add(nombre);
         for(String s: integrantes){
             r.getDeportista(s).getEquipos().add(nombre);
         }
 
+        r.writeEquipo(e);
         Repository.persistInstance(this);
     }
 

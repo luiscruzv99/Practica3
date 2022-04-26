@@ -51,7 +51,7 @@ public class EquipoArrayAdapter extends ArrayAdapter<Equipo> {
         EquipoViewHolder viewHolder;
         if (row == null) {
             LayoutInflater inflater = (LayoutInflater) this.getContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-            row = inflater.inflate(R.layout.ejercicio_row, parent, false);
+            row = inflater.inflate(R.layout.equipo_row, parent, false);
             viewHolder = new EquipoViewHolder();
             viewHolder.nombreEj = (TextView) row.findViewById(R.id.nombreEq);
             viewHolder.numIntegrantes = (TextView) row.findViewById(R.id.numInt);
@@ -62,10 +62,7 @@ public class EquipoArrayAdapter extends ArrayAdapter<Equipo> {
         Equipo equipoAvg = getItem(position);
         viewHolder.nombreEj.setText(equipoAvg.getId());
         viewHolder.numIntegrantes.setText(Integer.toString(equipoAvg.getIntegrantes().size()));
+        System.out.println(equipoAvg.getIntegrantes().size());
         return row;
-    }
-
-    public Bitmap decodeToBitmap(byte[] decodedByte) {
-        return BitmapFactory.decodeByteArray(decodedByte, 0, decodedByte.length);
     }
 }

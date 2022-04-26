@@ -26,6 +26,7 @@
         android:layout_width="410dp"
         android:layout_height="70dp"
         android:gravity="center_horizontal|center_vertical"
+        android:paddingTop="15dp"
         android:text="@string/tus_equipos"
         android:textSize="40sp"
         app:layout_constraintBottom_toTopOf="@+id/linearLayout"
