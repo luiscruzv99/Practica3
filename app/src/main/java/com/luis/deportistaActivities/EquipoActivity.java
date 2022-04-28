@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.util.SparseBooleanArray;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
@@ -15,6 +16,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.luis.ChatActivity;
 import com.luis.MainActivity;
 import com.luis.R;
 import com.luis.pojos.Equipo;
@@ -37,21 +39,35 @@ public class EquipoActivity extends AppCompatActivity {
         name = intent.getStringExtra(MainActivity.EXTRA_MESSAGE);
         r = Repository.getInstance(this);
 
-        r.getEquipos();
-
-        ListView listaEquipos = (ListView) findViewById(R.id.listaEquipos);
+        ListView listaEquipos = findViewById(R.id.listaEquipos);
         EquipoArrayAdapter equipoArrayAdapter = new EquipoArrayAdapter(getApplicationContext(), R.layout.equipo_row);
-        listaEquipos.setAdapter(equipoArrayAdapter);
+
 
         ArrayList<Equipo> eqs =new ArrayList<>(r.getEquipos().values());
         for(Equipo e: eqs){
             equipoArrayAdapter.add(e);
         }
 
+        listaEquipos.setAdapter(equipoArrayAdapter);
+
+        listaEquipos.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                Intent intent = new Intent(getApplicationContext(), ChatActivity.class);
+                String[] params = {name,eqs.get(i).getId()};
+                intent.putExtra(MainActivity.EXTRA_MESSAGE, params);
+
+                startActivity(intent);
+
+            }
+        });
+
         FloatingActionButton fab = findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
+            //Logica para anhadir un equipo
             @Override
             public void onClick(View view) {
+                //Dialogo emergente
                 View alertCustomdialog = LayoutInflater.from(EquipoActivity.this).inflate(R.layout.crea_equipo_layout,null);
                 //initialize alert builder.
                 AlertDialog.Builder alert = new AlertDialog.Builder(EquipoActivity.this);
@@ -76,6 +92,7 @@ public class EquipoActivity extends AppCompatActivity {
                 Button g = alertCustomdialog.findViewById(R.id.guardar);
                 Button c = alertCustomdialog.findViewById(R.id.cancelar);
 
+                // Guardado de los compañeros seleccionados
                 g.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {

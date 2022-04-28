@@ -7,8 +7,11 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
 
+import com.google.firebase.database.core.Repo;
+import com.luis.ChatActivity;
 import com.luis.MainActivity;
 import com.luis.R;
+import com.luis.pojos.Repository;
 
 public class EjerciciosActivity extends AppCompatActivity {
 
@@ -60,6 +63,15 @@ public class EjerciciosActivity extends AppCompatActivity {
         Intent intent = new Intent(this, EquipoActivity.class);
 
         intent.putExtra(EXTRA_MESSAGE, name);
+        startActivity(intent);
+    }
+
+    public void monitor(View view){
+        Intent intent = new Intent(this, ChatActivity.class);
+        Repository r = Repository.getInstance(this);
+        String monitor = r.getDeportista(name).getIdMonitor();
+        String[] params = {name, monitor+name};
+        intent.putExtra(EXTRA_MESSAGE, params);
         startActivity(intent);
     }
 
