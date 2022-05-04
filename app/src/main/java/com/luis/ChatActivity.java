@@ -24,7 +24,6 @@ import java.util.ArrayList;
 
 public class ChatActivity extends AppCompatActivity {
 
-    //TODO: Recibir el nombre del usuario y el nombre del chat al que conectarse
     String name;
     String chatLoc;
 
@@ -49,7 +48,6 @@ public class ChatActivity extends AppCompatActivity {
                 EditText input = (EditText)findViewById(R.id.msgField);
 
                 FirebaseFirestore db = FirebaseFirestore.getInstance();
-                // TODO: Hacer publicacion del mensaje a firestore, al chat correspondiente
                 db.collection("chats/"+chatLoc+"/mensajes").add(new MensajeChat(input.getText().toString(), name));
 
                 // Clear the input
@@ -65,19 +63,18 @@ public class ChatActivity extends AppCompatActivity {
             public void onEvent(@Nullable QuerySnapshot value, @Nullable FirebaseFirestoreException error) {
 
                 if(value == null) return;
-                ArrayAdapter<MensajeChat> adapter = new ArrayAdapter<MensajeChat>(getApplicationContext(), R.layout.mensaje);
+                MensajeArrayAdapter adapter = new MensajeArrayAdapter(getApplicationContext(), R.layout.mensaje);
                 for(QueryDocumentSnapshot e: value){
-                    adapter.add(e.toObject(MensajeChat.class));
+                    MensajeChat a = e.toObject(MensajeChat.class);
+                    if(a.getMessageUser().equals(name)){
+                        a.setMessageUser("Tú");
+                    }
+                    adapter.add(a);
                 }
 
                 vistaMsgs.setAdapter(adapter);
                 adapter.notifyDataSetChanged();
             }
         });
-    }
-
-    private void displayChatMessages() {
-        //TODO: Mostrar los mensajes del chat
-
     }
 }

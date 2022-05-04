@@ -35,15 +35,15 @@
 
     <ListView
         android:id="@+id/listaMsgs"
-        android:layout_width="391dp"
-        android:layout_height="644dp"
+        android:layout_width="414dp"
+        android:layout_height="591dp"
         app:layout_constraintBottom_toTopOf="@+id/enviarMsg"
         app:layout_constraintStart_toStartOf="parent" />
 
     <TextView
         android:id="@+id/chatName"
-        android:layout_width="392dp"
-        android:layout_height="78dp"
+        android:layout_width="413dp"
+        android:layout_height="77dp"
         android:backgroundTint="@color/purple_200"
         android:gravity="center_vertical"
         android:paddingLeft="10dp"
