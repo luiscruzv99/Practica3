@@ -51,7 +51,7 @@ public class MensajeArrayAdapter extends ArrayAdapter<MensajeChat> {
         MensajeArrayAdapter.MensajeViewHolder viewHolder;
         if (row == null) {
             LayoutInflater inflater = (LayoutInflater) this.getContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-            row = inflater.inflate(R.layout.equipo_row, parent, false);
+            row = inflater.inflate(R.layout.mensaje, parent, false);
             viewHolder = new MensajeArrayAdapter.MensajeViewHolder();
             viewHolder.nombreUsuario = (TextView) row.findViewById(R.id.message_user);
             viewHolder.contenido = (TextView) row.findViewById(R.id.message_text);
@@ -63,8 +63,8 @@ public class MensajeArrayAdapter extends ArrayAdapter<MensajeChat> {
         MensajeChat mensaje = getItem(position);
 
         System.out.println(mensaje.getMessageUser());
-        //viewHolder.nombreUsuario.setText(mensaje.getMessageUser());
-        //viewHolder.contenido.setText(mensaje.getMessageText());
+        viewHolder.nombreUsuario.setText(mensaje.getMessageUser());
+        viewHolder.contenido.setText(mensaje.getMessageText());
         return row;
     }
 }
