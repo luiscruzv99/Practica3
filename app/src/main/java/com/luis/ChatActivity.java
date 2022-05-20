@@ -1,18 +1,15 @@
 package com.luis;
 
-import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.ListView;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
-import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.firestore.EventListener;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.FirebaseFirestoreException;
@@ -20,12 +17,11 @@ import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
 import com.luis.pojos.MensajeChat;
 
-import java.util.ArrayList;
-
 public class ChatActivity extends AppCompatActivity {
 
     String name;
     String chatLoc;
+    String type;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,6 +34,7 @@ public class ChatActivity extends AppCompatActivity {
         params = intent.getStringArrayExtra(MainActivity.EXTRA_MESSAGE);
         name = params[0];
         chatLoc = params[1];
+        type = params[2];
 
         FloatingActionButton fab =
                 (FloatingActionButton)findViewById(R.id.enviarMsg);
@@ -48,7 +45,7 @@ public class ChatActivity extends AppCompatActivity {
                 EditText input = (EditText)findViewById(R.id.msgField);
 
                 FirebaseFirestore db = FirebaseFirestore.getInstance();
-                db.collection("chats/"+chatLoc+"/mensajes").add(new MensajeChat(input.getText().toString(), name));
+                db.collection("chats/"+chatLoc+"/mensajes").add(new MensajeChat(input.getText().toString(), name+" "+type));
 
                 // Clear the input
                 input.setText("");
@@ -66,7 +63,7 @@ public class ChatActivity extends AppCompatActivity {
                 MensajeArrayAdapter adapter = new MensajeArrayAdapter(getApplicationContext(), R.layout.mensaje);
                 for(QueryDocumentSnapshot e: value){
                     MensajeChat a = e.toObject(MensajeChat.class);
-                    if(a.getMessageUser().equals(name)){
+                    if(a.getMessageUser().equals(name+" "+type)){
                         a.setMessageUser("Tú");
                     }
                     adapter.add(a);

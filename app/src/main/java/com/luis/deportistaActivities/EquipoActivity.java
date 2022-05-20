@@ -54,7 +54,7 @@ public class EquipoActivity extends AppCompatActivity {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                 Intent intent = new Intent(getApplicationContext(), ChatActivity.class);
-                String[] params = {name,eqs.get(i).getId()};
+                String[] params = {name,eqs.get(i).getId(),""};
                 intent.putExtra(MainActivity.EXTRA_MESSAGE, params);
 
                 startActivity(intent);

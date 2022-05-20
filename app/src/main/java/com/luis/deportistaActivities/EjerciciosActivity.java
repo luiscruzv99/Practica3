@@ -7,7 +7,6 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
 
-import com.google.firebase.database.core.Repo;
 import com.luis.ChatActivity;
 import com.luis.MainActivity;
 import com.luis.R;
@@ -70,7 +69,7 @@ public class EjerciciosActivity extends AppCompatActivity {
         Intent intent = new Intent(this, ChatActivity.class);
         Repository r = Repository.getInstance(this);
         String monitor = r.getDeportista(name).getIdMonitor();
-        String[] params = {name, monitor+name};
+        String[] params = {name, monitor+name, "(deportista)"};
         intent.putExtra(EXTRA_MESSAGE, params);
         startActivity(intent);
     }

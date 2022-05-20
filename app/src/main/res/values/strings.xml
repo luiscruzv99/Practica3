@@ -21,4 +21,5 @@
     <string name="lista_de_deportistas">Lista de deportistas</string>
     <string name="tus_equipos">Tus Equipos</string>
     <string name="agregar_equipo">Agregar equipo</string>
+    <string name="chat_con_deportista">Chat con deportista</string>
 </resources>

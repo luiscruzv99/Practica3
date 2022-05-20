@@ -8,9 +8,12 @@ import android.view.View;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.luis.ChatActivity;
 import com.luis.MainActivity;
 import com.luis.R;
 import com.luis.TrackEjActivity;
+import com.luis.deportistaActivities.AndarActivity;
 import com.luis.pojos.Andar;
 import com.luis.pojos.Bici;
 import com.luis.pojos.Carrera;
@@ -54,6 +57,19 @@ public class DeportistaActivity extends AppCompatActivity {
         for(EjercicioAvg e: stats){
             ejercicioArrayAdapter.add(e);
         }
+
+        FloatingActionButton fab = findViewById(R.id.openChat);
+        fab.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getApplicationContext(), ChatActivity.class);
+
+                String[] params = {name, m.getName()+name, "(Monitor)"};
+                intent.putExtra(EXTRA_MESSAGE, params);
+                startActivity(intent);
+            }
+        });
     }
 
     private ArrayList<EjercicioAvg> generaStats(Deportista d){

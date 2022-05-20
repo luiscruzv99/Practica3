@@ -1,10 +1,5 @@
 package com.luis.pojos;
 
-import androidx.room.ColumnInfo;
-import androidx.room.Entity;
-import androidx.room.Ignore;
-import androidx.room.Query;
-
 import java.util.ArrayList;
 
 public class Deportista extends Usuario{
