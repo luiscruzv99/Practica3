@@ -23,8 +23,8 @@
 
     <EditText
         android:id="@+id/msgField"
-        android:layout_width="311dp"
-        android:layout_height="41dp"
+        android:layout_width="324dp"
+        android:layout_height="77dp"
         android:ems="10"
         android:hint="Mensaje"
         android:inputType="textPersonName"
@@ -33,11 +33,13 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/enviarMsg" />
 
-    <ListView
-        android:id="@+id/listaMsgs"
-        android:layout_width="414dp"
-        android:layout_height="591dp"
-        app:layout_constraintBottom_toTopOf="@+id/enviarMsg"
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/chatMsgs"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:padding="2dp"
+        app:layout_constraintBottom_toTopOf="@+id/msgField"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 
     <!--TextView

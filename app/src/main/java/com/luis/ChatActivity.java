@@ -2,6 +2,8 @@ package com.luis;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -16,6 +18,11 @@ import com.google.firebase.firestore.FirebaseFirestoreException;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
 import com.luis.pojos.MensajeChat;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.Comparator;
 
 public class ChatActivity extends AppCompatActivity {
 
@@ -52,7 +59,7 @@ public class ChatActivity extends AppCompatActivity {
             }
         });
 
-        ListView vistaMsgs = findViewById(R.id.listaMsgs);
+        RecyclerView vistaMsgs = findViewById(R.id.chatMsgs);
         FirebaseFirestore db = FirebaseFirestore.getInstance();
         db.collection("chats/" + chatLoc+"/mensajes").addSnapshotListener(new EventListener<QuerySnapshot>() {
 
@@ -60,17 +67,25 @@ public class ChatActivity extends AppCompatActivity {
             public void onEvent(@Nullable QuerySnapshot value, @Nullable FirebaseFirestoreException error) {
 
                 if(value == null) return;
-                MensajeArrayAdapter adapter = new MensajeArrayAdapter(getApplicationContext(), R.layout.mensaje);
+                MensajeRecyclerAdapter adapter = new MensajeRecyclerAdapter(getApplicationContext(),new ArrayList<MensajeChat>());
+                vistaMsgs.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
                 for(QueryDocumentSnapshot e: value){
                     MensajeChat a = e.toObject(MensajeChat.class);
                     if(a.getMessageUser().equals(name+" "+type)){
                         a.setMessageUser("Tú");
                     }
-                    adapter.add(a);
+                    adapter.getMsgs().add(a);
+                    Collections.sort(adapter.getMsgs(), new Comparator<MensajeChat>() {
+                        @Override
+                        public int compare(MensajeChat o1, MensajeChat o2) {
+                            if(o1.getMessageTime() == o2.getMessageTime())
+                                return 0;
+                            return o1.getMessageTime() < o2.getMessageTime() ? -1 : 1;
+                        }
+                    });
                 }
 
                 vistaMsgs.setAdapter(adapter);
-                adapter.notifyDataSetChanged();
             }
         });
     }

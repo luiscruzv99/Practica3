@@ -7,8 +7,6 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.TextView;
 
-import com.luis.deportistaActivities.EquipoArrayAdapter;
-import com.luis.pojos.Equipo;
 import com.luis.pojos.MensajeChat;
 
 import java.util.ArrayList;
@@ -51,7 +49,7 @@ public class MensajeArrayAdapter extends ArrayAdapter<MensajeChat> {
         MensajeArrayAdapter.MensajeViewHolder viewHolder;
         if (row == null) {
             LayoutInflater inflater = (LayoutInflater) this.getContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-            row = inflater.inflate(R.layout.mensaje, parent, false);
+            row = inflater.inflate(R.layout.mensaje_me, parent, false);
             viewHolder = new MensajeArrayAdapter.MensajeViewHolder();
             viewHolder.nombreUsuario = (TextView) row.findViewById(R.id.message_user);
             viewHolder.contenido = (TextView) row.findViewById(R.id.message_text);
