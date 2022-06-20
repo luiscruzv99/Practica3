@@ -16,7 +16,7 @@
     <androidx.cardview.widget.CardView
         android:id="@+id/msgText"
         android:layout_width="320dp"
-        android:layout_height="66dp"
+        android:layout_height="wrap_content"
         android:layout_below="@+id/message_user"
         android:layout_marginTop="0dp"
         android:backgroundTint="#7C4DFF"
