@@ -29,6 +29,8 @@ public class MonitorActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_monitor);
 
+        getSupportActionBar().hide();
+
         Intent intent = getIntent();
         String monitor = intent.getStringExtra(MainActivity.EXTRA_MESSAGE);
         r = Repository.getInstance(this);

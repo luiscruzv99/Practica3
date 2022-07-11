@@ -43,10 +43,14 @@ public class DeportistaActivity extends AppCompatActivity {
         name = intent.getStringExtra(MainActivity.EXTRA_MESSAGE);
 
         r = Repository.getInstance(this);
-        m = r.getMonitor(name);
+        m = r.getMonitor(r.getDeportista(name).getIdMonitor());
 
         TextView nameView = findViewById(R.id.deportName);
         nameView.setText(name);
+
+        System.out.println(name);
+
+        getSupportActionBar().hide();
 
         //Creamos la lista con stats
         ListView listaDeportista = (ListView) findViewById(R.id.listaStats);

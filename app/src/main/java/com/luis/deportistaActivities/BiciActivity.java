@@ -74,6 +74,7 @@ public class BiciActivity extends AppCompatActivity implements LocationListener 
         name = intent.getStringExtra(MainActivity.EXTRA_MESSAGE);
 
         localizaciones = new ArrayList<>();
+        getSupportActionBar().hide();
     }
 
     @Override

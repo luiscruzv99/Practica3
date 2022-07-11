@@ -27,6 +27,7 @@ public class EjerciciosActivity extends AppCompatActivity {
 
         TextView textView = findViewById(R.id.textView);
         textView.setText("Bienvenido, " + name);
+        getSupportActionBar().hide();
 
     }
 

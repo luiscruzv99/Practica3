@@ -71,6 +71,7 @@ public class CorrerActivity extends AppCompatActivity implements LocationListene
         name = intent.getStringExtra(MainActivity.EXTRA_MESSAGE);
 
         localizaciones = new ArrayList<>();
+        getSupportActionBar().hide();
     }
 
     @Override

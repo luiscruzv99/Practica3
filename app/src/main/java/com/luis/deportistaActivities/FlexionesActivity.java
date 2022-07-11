@@ -48,6 +48,8 @@ public class FlexionesActivity extends AppCompatActivity implements SensorEventL
         r = Repository.getInstance(this);
         Intent intent = getIntent();
         name = intent.getStringExtra(MainActivity.EXTRA_MESSAGE);
+
+        getSupportActionBar().hide();
     }
 
     @Override

@@ -55,6 +55,7 @@ public class AndarActivity extends AppCompatActivity implements SensorEventListe
         r = Repository.getInstance(this);
         Intent intent = getIntent();
         name = intent.getStringExtra(MainActivity.EXTRA_MESSAGE);
+        getSupportActionBar().hide();
 
     }
 

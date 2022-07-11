@@ -42,6 +42,7 @@ public class EquipoActivity extends AppCompatActivity {
         ListView listaEquipos = findViewById(R.id.listaEquipos);
         EquipoArrayAdapter equipoArrayAdapter = new EquipoArrayAdapter(getApplicationContext(), R.layout.equipo_row);
 
+        getSupportActionBar().hide();
 
         ArrayList<Equipo> eqs =new ArrayList<>(r.getEquipos().values());
         for(Equipo e: eqs){

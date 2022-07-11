@@ -57,6 +57,7 @@ public class MainActivity extends AppCompatActivity {
                 });
         //Repository.nuke(this);
         r = Repository.getInstance(this);
+        getSupportActionBar().hide();
     }
 
     public void login(View view){

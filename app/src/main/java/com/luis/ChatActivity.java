@@ -46,6 +46,8 @@ public class ChatActivity extends AppCompatActivity {
         FloatingActionButton fab =
                 (FloatingActionButton)findViewById(R.id.enviarMsg);
 
+        System.out.println(name);
+
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -86,6 +88,7 @@ public class ChatActivity extends AppCompatActivity {
                 }
 
                 vistaMsgs.setAdapter(adapter);
+                getSupportActionBar().setTitle("Chat con "+name);
             }
         });
     }
