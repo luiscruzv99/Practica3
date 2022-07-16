@@ -39,6 +39,7 @@ public class FlexionesActivity extends AppCompatActivity implements SensorEventL
 
         if (sensor!=null) {
             sensorManager.registerListener((SensorEventListener) this, sensor, SensorManager.SENSOR_DELAY_UI);
+            System.out.println("Sensor Funcionando");
         }
 
         empezado = false;
@@ -58,6 +59,7 @@ public class FlexionesActivity extends AppCompatActivity implements SensorEventL
         if(empezado){
             if(sensorEvent.values[0] < 5){
                 flexiones ++;
+                System.out.println(flexiones);
                 flexView.setText("Flexiones: "+flexiones);
             }
         }

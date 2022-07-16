@@ -17,7 +17,7 @@
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.699" />
+        app:layout_constraintVertical_bias="0.798" />
 
     <Button
         android:id="@+id/empiezaBici"
@@ -41,19 +41,21 @@
         app:layout_constraintEnd_toEndOf="@+id/chronoBici"
         app:layout_constraintStart_toStartOf="@+id/chronoBici"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.251" />
+        app:layout_constraintVertical_bias="0.089" />
 
     <TextView
         android:id="@+id/velocidad"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:text="  "
         android:textSize="34sp"
         app:layout_constraintBottom_toTopOf="@+id/chronoBici"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/aBici"
-        app:layout_constraintVertical_bias="0.948" />
+        app:layout_constraintVertical_bias="0.948"
+        tools:text="   " />
 
     <ImageView
         android:id="@+id/imageView3"
@@ -64,4 +66,17 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/aBici"
         app:srcCompat="@drawable/biking" />
+
+    <TextView
+        android:id="@+id/descBici"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:width="350dp"
+        android:text="@string/descBici"
+        android:textAlignment="center"
+        app:layout_constraintBottom_toTopOf="@+id/velocidad"
+        app:layout_constraintEnd_toEndOf="@+id/velocidad"
+        app:layout_constraintStart_toStartOf="@+id/velocidad"
+        app:layout_constraintTop_toBottomOf="@+id/imageView3" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

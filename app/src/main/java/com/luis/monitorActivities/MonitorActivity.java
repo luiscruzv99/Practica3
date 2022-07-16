@@ -33,8 +33,14 @@ public class MonitorActivity extends AppCompatActivity {
 
         Intent intent = getIntent();
         String monitor = intent.getStringExtra(MainActivity.EXTRA_MESSAGE);
+        System.out.println("Nombre monitor: " + monitor);
         r = Repository.getInstance(this);
-        ArrayList<String> deportistas = r.getMonitor(monitor).getDeportistas();
+        ArrayList<String> deportistas;
+        if(r.getMonitor(monitor).getDeportistas() != null) {
+             deportistas= r.getMonitor(monitor).getDeportistas();
+        }else{
+            deportistas = new ArrayList<String>();
+        }
         ListView listView = findViewById(R.id.vistaUsuarios);
         adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, deportistas);
         listView.setAdapter(adapter);

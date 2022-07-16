@@ -22,4 +22,8 @@
     <string name="tus_equipos">Tus Equipos</string>
     <string name="agregar_equipo">Agregar equipo</string>
     <string name="chat_con_deportista">Chat con deportista</string>
+    <string name="descBici">Pulsa \"empezar\" y comienza a pedalear, la aplicación grabará tu recorrido y velocidad media.</string>
+    <string name="descAndar">Pulsa \"empezar\" y guarda tu dispositivo en un bolsillo, la aplicación contará los pasos.</string>
+    <string name="descCorrer">Pulsa \"empezar\" y comienza a correr. La aplicación grabará tu recorrido y la duración del entrenamiento.</string>
+    <string name="descFlexiones">Coloca tu dispositivo en el suelo, túmbate con la frente tocando el dispositivo y asume la posición de flexiones. Pulsa el botón \"empezar\". Realiza las flexiones de manera normal, asegurándote de que, en la bajada, tu frente quede a unos 5mm del dispositivo, para que se puedan registrar correctamente.</string>
 </resources>

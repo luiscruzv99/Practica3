@@ -65,9 +65,13 @@ public class TrackEjActivity extends FragmentActivity implements OnMapReadyCallb
         ArrayList<Localizacion> locs = new ArrayList<>();
 
         if(modo.equals("correr")) {
+            if (!r.getDeportista(name).getCarreras().isEmpty()){
              locs = r.getDeportista(name).getCarreras().get(r.getDeportista(name).getCarreras().size()-1).getPath();
+            }
         }else if(modo.equals("bici")){
-            locs = r.getDeportista(name).getBicicletas().get(r.getDeportista(name).getBicicletas().size()-1).getPath();
+            if (!r.getDeportista(name).getBicicletas().isEmpty()) {
+                locs = r.getDeportista(name).getBicicletas().get(r.getDeportista(name).getBicicletas().size() - 1).getPath();
+            }
         }
 
         ArrayList<LatLng> latLngs = new ArrayList<>();
@@ -82,9 +86,11 @@ public class TrackEjActivity extends FragmentActivity implements OnMapReadyCallb
         );
 
         // Add a marker in Sydney and move the camera
+        if(!latLngs.isEmpty()){
         mMap.addMarker(new MarkerOptions().position(latLngs.get(0)).title("Inicio"));
         mMap.addMarker(new MarkerOptions().position(latLngs.get(latLngs.size()-1)).title("Fin"));
        mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(latLngs.get(0), 15));
+        }
 
     }
 }

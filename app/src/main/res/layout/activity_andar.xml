@@ -17,7 +17,7 @@
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.699" />
+        app:layout_constraintVertical_bias="0.814" />
 
     <Button
         android:id="@+id/empiezaAndar"
@@ -42,19 +42,21 @@
         app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="@+id/chronoAndar"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.239" />
+        app:layout_constraintVertical_bias="0.078" />
 
     <TextView
         android:id="@+id/pasos"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:text=" "
         android:textSize="34sp"
         app:layout_constraintBottom_toTopOf="@+id/chronoAndar"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/aAndar"
-        app:layout_constraintVertical_bias="0.956" />
+        app:layout_constraintVertical_bias="0.956"
+        tools:text="  " />
 
     <ImageView
         android:id="@+id/imageView4"
@@ -66,4 +68,16 @@
         app:layout_constraintTop_toBottomOf="@+id/aAndar"
         app:layout_constraintVertical_bias="0.442"
         app:srcCompat="@drawable/walking" />
+
+    <TextView
+        android:id="@+id/descAndar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:width="350dp"
+        android:text="@string/descAndar"
+        android:textAlignment="center"
+        app:layout_constraintBottom_toTopOf="@+id/pasos"
+        app:layout_constraintEnd_toEndOf="@+id/pasos"
+        app:layout_constraintStart_toStartOf="@+id/pasos"
+        app:layout_constraintTop_toBottomOf="@+id/imageView4" />
 </androidx.constraintlayout.widget.ConstraintLayout>
