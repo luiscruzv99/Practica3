@@ -69,7 +69,7 @@ public class DeportistaActivity extends AppCompatActivity {
             public void onClick(View view) {
                 Intent intent = new Intent(getApplicationContext(), ChatActivity.class);
 
-                String[] params = {name, m.getName()+name, "(Monitor)"};
+                String[] params = {m.getName(), m.getName()+name, "(Monitor)", name};
                 intent.putExtra(EXTRA_MESSAGE, params);
                 startActivity(intent);
             }

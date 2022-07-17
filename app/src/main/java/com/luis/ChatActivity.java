@@ -24,7 +24,7 @@ import java.util.Comparator;
 
 public class ChatActivity extends AppCompatActivity {
 
-    String name;
+    String name, name2;
     String chatLoc;
     String type;
 
@@ -38,13 +38,12 @@ public class ChatActivity extends AppCompatActivity {
         Intent intent = getIntent();
         params = intent.getStringArrayExtra(MainActivity.EXTRA_MESSAGE);
         name = params[0];
+        name2 = params[3];
         chatLoc = params[1];
         type = params[2];
 
         FloatingActionButton fab =
                 (FloatingActionButton)findViewById(R.id.enviarMsg);
-
-        System.out.println(name);
 
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -86,7 +85,7 @@ public class ChatActivity extends AppCompatActivity {
                 }
 
                 vistaMsgs.setAdapter(adapter);
-                getSupportActionBar().setTitle("Chat con "+name);
+                getSupportActionBar().setTitle("Chat con "+name2);
             }
         });
     }
