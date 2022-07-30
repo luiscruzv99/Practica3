@@ -48,10 +48,7 @@ public class MainActivity extends AppCompatActivity {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (task.isSuccessful()) {
-                            System.out.println("Logged");
                             FirebaseUser user = mAuth.getCurrentUser();
-                        } else {
-                            System.out.println("Error");
                         }
                     }
                 });
@@ -126,7 +123,6 @@ public class MainActivity extends AppCompatActivity {
 
         //Mirar si el usuario existe en el repositorio
         Deportista d = r.getDeportista(name);
-        System.out.println(r.getDeportistas().size());
         if(d != null) {
             //Si existe, comparar la contraseña guardada con la introducida
             if(d.getPass().equals(pass)) return true;

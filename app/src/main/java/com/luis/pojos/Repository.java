@@ -62,11 +62,8 @@ public class Repository {
                 if (task.isSuccessful()) {
                     DocumentSnapshot document = task.getResult();
                     if (document.exists()) {
-                        System.out.println("Leido firebase");
                         INSTANCE=document.toObject(Repository.class);
-                        System.out.println(INSTANCE.deportistas.size());
                     } else {
-                        System.out.println("Error documento 1");
                         Gson g = new Gson();
 
                         try {
@@ -77,7 +74,6 @@ public class Repository {
                         }
                     }
                 } else {
-                    System.out.println("Error documento 2");
                     Gson g = new Gson();
 
                     try {
@@ -109,7 +105,6 @@ public class Repository {
             db.document("datos/repository")
                     .set(INSTANCE, SetOptions.merge());
         }catch (Exception e){
-            System.out.println("Error accediendo a la base de datos");
         }
 
         return true;

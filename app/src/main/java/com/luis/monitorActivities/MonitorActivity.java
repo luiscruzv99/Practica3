@@ -33,7 +33,6 @@ public class MonitorActivity extends AppCompatActivity {
 
         Intent intent = getIntent();
         String monitor = intent.getStringExtra(MainActivity.EXTRA_MESSAGE);
-        System.out.println("Nombre monitor: " + monitor);
         r = Repository.getInstance(this);
         ArrayList<String> deportistas;
         if(r.getMonitor(monitor).getDeportistas() != null) {

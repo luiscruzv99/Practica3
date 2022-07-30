@@ -48,7 +48,6 @@ public class DeportistaActivity extends AppCompatActivity {
         TextView nameView = findViewById(R.id.deportName);
         nameView.setText(name);
 
-        System.out.println(name);
 
         getSupportActionBar().hide();
 

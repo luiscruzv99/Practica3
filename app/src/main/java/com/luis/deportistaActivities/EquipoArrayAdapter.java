@@ -62,7 +62,6 @@ public class EquipoArrayAdapter extends ArrayAdapter<Equipo> {
         Equipo equipoAvg = getItem(position);
         viewHolder.nombreEj.setText(equipoAvg.getId());
         viewHolder.numIntegrantes.setText(Integer.toString(equipoAvg.getIntegrantes().size()));
-        System.out.println(equipoAvg.getIntegrantes().size());
         return row;
     }
 }

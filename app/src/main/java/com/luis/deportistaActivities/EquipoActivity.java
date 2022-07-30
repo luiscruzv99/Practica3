@@ -109,7 +109,6 @@ public class EquipoActivity extends AppCompatActivity {
                         for(int i=0; i<values.size(); i++){
                             if(values.valueAt(i)){
                                 selected.add(compis.get(i));
-                                System.out.println(compis.get(i));
                             }
                         }
 
@@ -119,7 +118,6 @@ public class EquipoActivity extends AppCompatActivity {
                             Toast.makeText(alertCustomdialog.getContext(), "Introduce un nombre de equipo", Toast.LENGTH_LONG).show();
                             return;
                         }
-                        System.out.println("Guardado: "+ nombreEquipo);
 
                         creaEquipo(nombreEquipo, selected, name);
                         dialog.dismiss();
