@@ -44,7 +44,7 @@ public class FlexionesActivity extends AppCompatActivity implements SensorEventL
 
         empezado = false;
         flexiones = 0;
-        flexView = findViewById(R.id.flexiones);
+        flexView = (TextView)findViewById(R.id.flexiones);
 
         r = Repository.getInstance(this);
         Intent intent = getIntent();

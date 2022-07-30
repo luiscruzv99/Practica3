@@ -50,7 +50,7 @@ public class AndarActivity extends AppCompatActivity implements SensorEventListe
 
         empezado = false;
         pasos = 0;
-        pasoView = findViewById(R.id.pasos);
+        pasoView = (TextView) findViewById(R.id.pasos);
 
         r = Repository.getInstance(this);
         Intent intent = getIntent();

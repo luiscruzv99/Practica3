@@ -67,7 +67,7 @@ public class BiciActivity extends AppCompatActivity implements LocationListener 
         this.loc = location;
         empezado = false;
         chrono = findViewById(R.id.chronoBici);
-        velocidad = findViewById(R.id.velocidad);
+        velocidad = (TextView)findViewById(R.id.velocidad);
 
         r = Repository.getInstance(this);
         Intent intent = getIntent();

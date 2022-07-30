@@ -64,7 +64,7 @@ public class CorrerActivity extends AppCompatActivity implements LocationListene
         dist = 0.0f;
         empezado = false;
         this.loc = location;
-        distancia = findViewById(R.id.distancia);
+        distancia = (TextView)findViewById(R.id.distancia);
 
         r = Repository.getInstance(this);
         Intent intent = getIntent();

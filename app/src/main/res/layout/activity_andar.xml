@@ -48,7 +48,7 @@
         android:id="@+id/pasos"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text=" "
+        android:text="Pasos: 0"
         android:textSize="34sp"
         app:layout_constraintBottom_toTopOf="@+id/chronoAndar"
         app:layout_constraintEnd_toEndOf="parent"
@@ -56,7 +56,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/aAndar"
         app:layout_constraintVertical_bias="0.956"
-        tools:text="  " />
+        tools:text="Pasos: 0" />
 
     <ImageView
         android:id="@+id/imageView4"
