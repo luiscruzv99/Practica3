@@ -28,7 +28,7 @@ import com.luis.pojos.Repository;
 import java.util.ArrayList;
 
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity{
 
     public static final String EXTRA_MESSAGE ="msg";
     private FirebaseAuth mAuth;
@@ -55,6 +55,8 @@ public class MainActivity extends AppCompatActivity {
         //Repository.nuke(this);
         r = Repository.getInstance(this);
         getSupportActionBar().hide();
+
+
     }
 
     public void login(View view){
@@ -180,6 +182,13 @@ public class MainActivity extends AppCompatActivity {
         });
 
         dialog.show();
+    }
+
+    @Override
+    protected void onPause(){
+        super.onPause();
+
+        System.out.println("PAUSA");
     }
 
 }

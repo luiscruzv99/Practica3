@@ -75,4 +75,11 @@ public class EjerciciosActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
+    @Override
+    protected void onPause(){
+        super.onPause();
+
+        System.out.println("PAUSA");
+    }
+
 }
