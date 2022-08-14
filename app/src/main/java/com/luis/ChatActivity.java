@@ -17,6 +17,8 @@ import com.google.firebase.firestore.FirebaseFirestoreException;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
 import com.luis.pojos.MensajeChat;
+import com.luis.pojos.Metrica;
+import com.luis.pojos.Repository;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -27,6 +29,9 @@ public class ChatActivity extends AppCompatActivity {
     String name, name2;
     String chatLoc;
     String type;
+
+    int clicks;
+    long time;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,6 +46,9 @@ public class ChatActivity extends AppCompatActivity {
         name2 = params[3];
         chatLoc = params[1];
         type = params[2];
+
+        clicks = 0;
+        time = System.nanoTime();
 
         FloatingActionButton fab =
                 (FloatingActionButton)findViewById(R.id.enviarMsg);
@@ -89,4 +97,25 @@ public class ChatActivity extends AppCompatActivity {
             }
         });
     }
+
+    @Override
+    protected void onPause(){
+        super.onPause();
+
+        time = System.nanoTime() - time;
+        time /= 1000000000;
+
+        FirebaseFirestore db = FirebaseFirestore.getInstance();
+        Metrica m = new Metrica(clicks, time, this.getClass().getSimpleName(), Repository.getIDTEST());
+        db.collection("metricas").add(m);
+
+        clicks = 0;
+        time = System.nanoTime();
+    }
+
+    @Override
+    public void onUserInteraction(){
+        clicks ++;
+    }
+
 }

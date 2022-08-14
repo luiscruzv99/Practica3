@@ -15,8 +15,10 @@ import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.android.gms.maps.model.Polyline;
 import com.google.android.gms.maps.model.PolylineOptions;
+import com.google.firebase.firestore.FirebaseFirestore;
 import com.luis.databinding.ActivityTrackEjBinding;
 import com.luis.pojos.Localizacion;
+import com.luis.pojos.Metrica;
 import com.luis.pojos.Repository;
 
 import java.util.ArrayList;
@@ -29,6 +31,9 @@ public class TrackEjActivity extends FragmentActivity implements OnMapReadyCallb
     String name;
     String modo;
 
+    int clicks;
+    long time;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -40,6 +45,9 @@ public class TrackEjActivity extends FragmentActivity implements OnMapReadyCallb
 
         name = datos[0];
         modo = datos[1];
+
+        clicks = 0;
+        time = System.nanoTime();
 
         r = Repository.getInstance(getApplicationContext());
 
@@ -93,4 +101,20 @@ public class TrackEjActivity extends FragmentActivity implements OnMapReadyCallb
         }
 
     }
+
+    @Override
+    protected void onPause(){
+        super.onPause();
+
+        time = System.nanoTime() - time;
+        time /= 1000000000;
+
+        FirebaseFirestore db = FirebaseFirestore.getInstance();
+        Metrica m = new Metrica(clicks, time, this.getClass().getSimpleName(), Repository.getIDTEST());
+        db.collection("metricas").add(m);
+
+        clicks = 0;
+        time = System.nanoTime();
+    }
+    
 }

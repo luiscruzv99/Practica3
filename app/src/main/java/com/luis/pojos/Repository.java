@@ -27,6 +27,8 @@ import java.util.Map;
 public class Repository {
 
     private static Repository INSTANCE = null;
+    private static int ORDER = 0;
+    private static int IDTEST = -1;
 
     //El monitor guarda sus deportistas
     private HashMap<String, Monitor> monitores;
@@ -38,6 +40,12 @@ public class Repository {
         deportistas = new HashMap<String, Deportista>();
         equipos = new HashMap<String, Equipo>();
     }
+
+    public static int getORDER(){return ++ORDER; }
+
+    public static void setIDTEST(int id){IDTEST = id;}
+
+    public static int getIDTEST(){return IDTEST;}
 
     public static Repository getInstance(Context a){
         if(INSTANCE == null) return loadInstance(a);

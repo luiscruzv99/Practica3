@@ -1,11 +1,14 @@
 package com.luis;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.InputType;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -19,9 +22,14 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.EventListener;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.FirebaseFirestoreException;
 import com.luis.deportistaActivities.EjerciciosActivity;
 import com.luis.monitorActivities.MonitorActivity;
 import com.luis.pojos.Deportista;
+import com.luis.pojos.Metrica;
 import com.luis.pojos.Monitor;
 import com.luis.pojos.Repository;
 
@@ -36,11 +44,17 @@ public class MainActivity extends AppCompatActivity{
     ArrayAdapter<String> adapter;
     ListView listView;
     AlertDialog dialog;
+    int m_Text = 0;
+    int clicks;
+    long time;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        clicks = 0;
+        time = System.nanoTime();
 
         mAuth = FirebaseAuth.getInstance();
         mAuth.signInAnonymously()
@@ -56,7 +70,25 @@ public class MainActivity extends AppCompatActivity{
         r = Repository.getInstance(this);
         getSupportActionBar().hide();
 
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle("Id de test");
 
+// Set up the input
+        final EditText input = new EditText(this);
+// Specify the type of input expected; this, for example, sets the input as a password, and will mask the text
+        input.setInputType(InputType.TYPE_CLASS_NUMBER);
+        builder.setView(input);
+
+// Set up the buttons
+        builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                m_Text = Integer.parseInt(input.getText().toString());
+                Repository.setIDTEST(m_Text);
+            }
+        });
+
+        builder.show();
     }
 
     public void login(View view){
@@ -93,22 +125,22 @@ public class MainActivity extends AppCompatActivity{
 
         if(boton == R.id.deportista) {
             Deportista d = r.getDeportista(name);
-            if (d == null) {
+            if (d == null && name.length() > 2 && pass.length() > 2) {
                 d = new Deportista(name, pass, "");
                 generaUsuario(d, view);
             } else {
-                Toast.makeText(this, "Error creando usuario", Toast.LENGTH_LONG).show();
+                Toast.makeText(this, "Error creando usuario, la longitud del nombre y contraseña debe ser mayor", Toast.LENGTH_LONG).show();
                 return;
             }
         }else if (boton == R.id.monitor) {
             Monitor d = r.getMonitor(name);
-            if(d == null){
+            if(d == null && name.length() > 2 && pass.length() > 2){
                 //Si el usuario no existe, guardar usuario en el repositorio y mostrar toast
                 d = new Monitor(name, pass, new ArrayList<>());
                 r.writeMonitor(d);
                 login(view);
             }else{
-                Toast.makeText(this, "Error creando usuario", Toast.LENGTH_LONG).show();
+                Toast.makeText(this, "Error creando usuario, la longitud del nombre y contraseña debe ser mayor", Toast.LENGTH_LONG).show();
                 return;
             }
         }else return;
@@ -119,6 +151,7 @@ public class MainActivity extends AppCompatActivity{
     public void finish(View view){
         Repository.persistInstance(this);
         finish();
+        System.exit(0);
     }
 
     private boolean verificaDeportista(String name, String pass, View v){
@@ -184,11 +217,25 @@ public class MainActivity extends AppCompatActivity{
         dialog.show();
     }
 
+
+    @Override
+    public void onUserInteraction(){
+        clicks ++;
+    }
+
     @Override
     protected void onPause(){
         super.onPause();
 
-        System.out.println("PAUSA");
+        time = System.nanoTime() - time;
+        time /= 1000000000;
+
+        FirebaseFirestore db = FirebaseFirestore.getInstance();
+        Metrica m = new Metrica(clicks, time, this.getClass().getSimpleName(), Repository.getIDTEST());
+        db.collection("metricas").add(m);
+
+        clicks = 0;
+        time = System.nanoTime();
     }
 
 }

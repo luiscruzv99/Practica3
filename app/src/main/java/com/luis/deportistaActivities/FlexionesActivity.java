@@ -15,8 +15,10 @@ import android.widget.Button;
 import android.widget.Chronometer;
 import android.widget.TextView;
 
+import com.google.firebase.firestore.FirebaseFirestore;
 import com.luis.MainActivity;
 import com.luis.R;
+import com.luis.pojos.Metrica;
 import com.luis.pojos.Repository;
 import com.luis.pojos.Flexiones;
 
@@ -29,6 +31,9 @@ public class FlexionesActivity extends AppCompatActivity implements SensorEventL
     Repository r;
     String name;
 
+    int clicks;
+    long time;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -40,6 +45,9 @@ public class FlexionesActivity extends AppCompatActivity implements SensorEventL
         if (sensor!=null) {
             sensorManager.registerListener((SensorEventListener) this, sensor, SensorManager.SENSOR_DELAY_UI);
         }
+
+        clicks = 0;
+        time = System.nanoTime();
 
         empezado = false;
         flexiones = 0;
@@ -88,4 +96,24 @@ public class FlexionesActivity extends AppCompatActivity implements SensorEventL
 
     @Override
     public void onAccuracyChanged(Sensor sensor, int i) {}
+
+    @Override
+    protected void onPause(){
+        super.onPause();
+
+        time = System.nanoTime() - time;
+        time /= 1000000000;
+
+        FirebaseFirestore db = FirebaseFirestore.getInstance();
+        Metrica m = new Metrica(clicks, time, this.getClass().getSimpleName(), Repository.getIDTEST());
+        db.collection("metricas").add(m);
+
+        clicks = 0;
+        time = System.nanoTime();
+    }
+
+    @Override
+    public void onUserInteraction(){
+        clicks ++;
+    }
 }

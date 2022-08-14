@@ -18,8 +18,10 @@ import android.widget.Button;
 import android.widget.Chronometer;
 import android.widget.TextView;
 
+import com.google.firebase.firestore.FirebaseFirestore;
 import com.luis.MainActivity;
 import com.luis.R;
+import com.luis.pojos.Metrica;
 import com.luis.pojos.Repository;
 import com.luis.pojos.Carrera;
 import com.luis.pojos.Localizacion;
@@ -37,6 +39,9 @@ public class CorrerActivity extends AppCompatActivity implements LocationListene
     Repository r;
     String name;
     ArrayList<Localizacion> localizaciones;
+
+    int clicks;
+    long time;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -60,6 +65,9 @@ public class CorrerActivity extends AppCompatActivity implements LocationListene
             location = locationManager.getLastKnownLocation(LocationManager.GPS_PROVIDER);
 
         }
+
+        clicks = 0;
+        time = System.nanoTime();
 
         dist = 0.0f;
         empezado = false;
@@ -109,5 +117,25 @@ public class CorrerActivity extends AppCompatActivity implements LocationListene
         }
 
 
+    }
+
+    @Override
+    protected void onPause(){
+        super.onPause();
+
+        time = System.nanoTime() - time;
+        time /= 1000000000;
+
+        FirebaseFirestore db = FirebaseFirestore.getInstance();
+        Metrica m = new Metrica(clicks, time, this.getClass().getSimpleName(), Repository.getIDTEST());
+        db.collection("metricas").add(m);
+
+        clicks = 0;
+        time = System.nanoTime();
+    }
+
+    @Override
+    public void onUserInteraction(){
+        clicks ++;
     }
 }

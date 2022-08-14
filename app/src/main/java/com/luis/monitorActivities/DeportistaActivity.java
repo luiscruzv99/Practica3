@@ -9,6 +9,7 @@ import android.widget.ListView;
 import android.widget.TextView;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.google.firebase.firestore.FirebaseFirestore;
 import com.luis.ChatActivity;
 import com.luis.MainActivity;
 import com.luis.R;
@@ -20,6 +21,7 @@ import com.luis.pojos.Carrera;
 import com.luis.pojos.Deportista;
 import com.luis.pojos.EjercicioAvg;
 import com.luis.pojos.Flexiones;
+import com.luis.pojos.Metrica;
 import com.luis.pojos.Monitor;
 import com.luis.pojos.Repository;
 
@@ -33,6 +35,8 @@ public class DeportistaActivity extends AppCompatActivity {
     ArrayList<EjercicioAvg> stats;
     public static final String EXTRA_MESSAGE ="msg";
 
+    int clicks;
+    long time;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,9 +49,11 @@ public class DeportistaActivity extends AppCompatActivity {
         r = Repository.getInstance(this);
         m = r.getMonitor(r.getDeportista(name).getIdMonitor());
 
+        clicks = 0;
+        time = System.nanoTime();
+
         TextView nameView = findViewById(R.id.deportName);
         nameView.setText(name);
-
 
         getSupportActionBar().hide();
 
@@ -153,6 +159,26 @@ public class DeportistaActivity extends AppCompatActivity {
         String[] datos = {name, "bici"};
         intent.putExtra(EXTRA_MESSAGE, datos);
         startActivity(intent);
+    }
+
+    @Override
+    protected void onPause(){
+        super.onPause();
+
+        time = System.nanoTime() - time;
+        time /= 1000000000;
+
+        FirebaseFirestore db = FirebaseFirestore.getInstance();
+        Metrica m = new Metrica(clicks, time, this.getClass().getSimpleName(), Repository.getIDTEST());
+        db.collection("metricas").add(m);
+
+        clicks = 0;
+        time = System.nanoTime();
+    }
+
+    @Override
+    public void onUserInteraction(){
+        clicks ++;
     }
 
 }
