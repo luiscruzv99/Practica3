@@ -7,15 +7,20 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
 
+import com.google.firebase.firestore.FirebaseFirestore;
 import com.luis.ChatActivity;
 import com.luis.MainActivity;
 import com.luis.R;
+import com.luis.pojos.Metrica;
 import com.luis.pojos.Repository;
 
 public class EjerciciosActivity extends AppCompatActivity {
 
     String name;
     public static final String EXTRA_MESSAGE ="msg";
+
+    int clicks;
+    long time;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -24,6 +29,9 @@ public class EjerciciosActivity extends AppCompatActivity {
 
         Intent intent = getIntent();
         name = intent.getStringExtra(MainActivity.EXTRA_MESSAGE);
+
+        clicks = 0;
+        time = System.nanoTime();
 
         TextView textView = findViewById(R.id.textView);
         textView.setText("Bienvenido, " + name);
@@ -73,6 +81,26 @@ public class EjerciciosActivity extends AppCompatActivity {
         String[] params = {name, monitor+name, "(deportista)", monitor};
         intent.putExtra(EXTRA_MESSAGE, params);
         startActivity(intent);
+    }
+
+    @Override
+    protected void onPause(){
+        super.onPause();
+
+        time = System.nanoTime() - time;
+        time /= 1000000000;
+
+        FirebaseFirestore db = FirebaseFirestore.getInstance();
+        Metrica m = new Metrica(clicks, time, this.getClass().getSimpleName(), Repository.getIDTEST());
+        db.collection("metricas").add(m);
+
+        clicks = 0;
+        time = System.nanoTime();
+    }
+
+    @Override
+    public void onUserInteraction(){
+        clicks ++;
     }
 
 }

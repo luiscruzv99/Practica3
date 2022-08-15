@@ -18,8 +18,10 @@ import android.widget.Button;
 import android.widget.Chronometer;
 import android.widget.TextView;
 
+import com.google.firebase.firestore.FirebaseFirestore;
 import com.luis.MainActivity;
 import com.luis.R;
+import com.luis.pojos.Metrica;
 import com.luis.pojos.Repository;
 import com.luis.pojos.Bici;
 import com.luis.pojos.Localizacion;
@@ -40,6 +42,9 @@ public class BiciActivity extends AppCompatActivity implements LocationListener 
     String name;
     ArrayList<Localizacion> localizaciones;
 
+    int clicks;
+    long time;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -51,6 +56,9 @@ public class BiciActivity extends AppCompatActivity implements LocationListener 
                     new String[]{Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission.ACCESS_COARSE_LOCATION}, 123);
             return;
         }
+
+        clicks = 0;
+        time = System.nanoTime();
 
         Location location;
         if(locationManager.isProviderEnabled(LocationManager.NETWORK_PROVIDER)){
@@ -107,6 +115,27 @@ public class BiciActivity extends AppCompatActivity implements LocationListener 
             Repository.persistInstance(this);
             finish();
         }
+    }
+
+
+    @Override
+    protected void onPause(){
+        super.onPause();
+
+        time = System.nanoTime() - time;
+        time /= 1000000000;
+
+        FirebaseFirestore db = FirebaseFirestore.getInstance();
+        Metrica m = new Metrica(clicks, time, this.getClass().getSimpleName(), Repository.getIDTEST());
+        db.collection("metricas").add(m);
+
+        clicks = 0;
+        time = System.nanoTime();
+    }
+
+    @Override
+    public void onUserInteraction(){
+        clicks ++;
     }
 
 }
