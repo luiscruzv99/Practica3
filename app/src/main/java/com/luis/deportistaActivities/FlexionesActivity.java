@@ -51,7 +51,6 @@ public class FlexionesActivity extends AppCompatActivity implements SensorEventL
 
         empezado = false;
         flexiones = 0;
-        flexView = (TextView)findViewById(R.id.flexiones);
 
         r = Repository.getInstance(this);
         Intent intent = getIntent();
@@ -77,6 +76,8 @@ public class FlexionesActivity extends AppCompatActivity implements SensorEventL
 
         Button btn = findViewById(R.id.empiezaFlex);
         Chronometer chrono = findViewById(R.id.chronoFlex);
+        flexView = (TextView)findViewById(R.id.flexiones);
+
 
         if(btn.getText().equals("Empezar")){
             chrono.setBase(SystemClock.elapsedRealtime());

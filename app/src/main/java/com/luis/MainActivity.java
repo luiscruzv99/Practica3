@@ -67,7 +67,6 @@ public class MainActivity extends AppCompatActivity{
                     }
                 });
         //Repository.nuke(this);
-        r = Repository.getInstance(this);
         getSupportActionBar().hide();
 
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
@@ -89,6 +88,8 @@ public class MainActivity extends AppCompatActivity{
         });
 
         builder.show();
+
+        r = Repository.getInstance(this);
     }
 
     public void login(View view){

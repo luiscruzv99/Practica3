@@ -72,7 +72,6 @@ public class CorrerActivity extends AppCompatActivity implements LocationListene
         dist = 0.0f;
         empezado = false;
         this.loc = location;
-        distancia = (TextView)findViewById(R.id.distancia);
 
         r = Repository.getInstance(this);
         Intent intent = getIntent();
@@ -99,6 +98,8 @@ public class CorrerActivity extends AppCompatActivity implements LocationListene
 
         Button btn = findViewById(R.id.empiezaCorrer);
         Chronometer chrono = findViewById(R.id.chronoCorrer);
+        distancia = (TextView)findViewById(R.id.distancia);
+
 
         if(btn.getText().equals("Empezar")){
 

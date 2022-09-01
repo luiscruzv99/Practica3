@@ -55,7 +55,6 @@ public class AndarActivity extends AppCompatActivity implements SensorEventListe
 
         empezado = false;
         pasos = 0;
-        pasoView = (TextView) findViewById(R.id.pasos);
 
         clicks = 0;
         time = System.nanoTime();
@@ -64,7 +63,6 @@ public class AndarActivity extends AppCompatActivity implements SensorEventListe
         Intent intent = getIntent();
         name = intent.getStringExtra(MainActivity.EXTRA_MESSAGE);
         getSupportActionBar().hide();
-
     }
 
     @Override
@@ -81,6 +79,7 @@ public class AndarActivity extends AppCompatActivity implements SensorEventListe
 
         Button btn = findViewById(R.id.empiezaAndar);
         Chronometer chrono = findViewById(R.id.chronoAndar);
+        pasoView = (TextView) findViewById(R.id.pasos);
 
         if(btn.getText().equals("Empezar")){
             chrono.setBase(SystemClock.elapsedRealtime());
