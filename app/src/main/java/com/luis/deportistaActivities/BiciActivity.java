@@ -75,7 +75,6 @@ public class BiciActivity extends AppCompatActivity implements LocationListener 
         this.loc = location;
         empezado = false;
         chrono = findViewById(R.id.chronoBici);
-        velocidad = (TextView)findViewById(R.id.velocidad);
 
         r = Repository.getInstance(this);
         Intent intent = getIntent();
@@ -101,6 +100,8 @@ public class BiciActivity extends AppCompatActivity implements LocationListener 
     public void empieza(View view){
 
         Button btn = findViewById(R.id.empiezaBici);
+        velocidad = (TextView)findViewById(R.id.velocidad);
+
 
         if(btn.getText().equals("Empezar")){
             chrono.setBase(SystemClock.elapsedRealtime());
