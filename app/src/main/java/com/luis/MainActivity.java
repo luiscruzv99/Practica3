@@ -192,6 +192,7 @@ public class MainActivity extends AppCompatActivity{
     }
 
     private void generaUsuario(Deportista d, View view){
+        r = Repository.getInstance(this);
         ArrayList<String> monitores = new ArrayList<String>(r.getMonitores().keySet());
         AlertDialog.Builder alertDialog = new AlertDialog.Builder(this);
         View rowList = getLayoutInflater().inflate(R.layout.row, null);

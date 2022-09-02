@@ -71,6 +71,7 @@ public class Repository {
                     DocumentSnapshot document = task.getResult();
                     if (document.exists()) {
                         INSTANCE=document.toObject(Repository.class);
+                        System.out.println("AAAAAA"+INSTANCE.monitores.keySet().size());
                     } else {
                         Gson g = new Gson();
 
